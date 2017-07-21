@@ -43,10 +43,6 @@ def post_edit_view(request, pk=None):
     return render(request, 'post_edit.html', context)
 
 
-def comment_create_view(request):
-    form = CommentModelForm()
-
-
 def post_list_view(request):
     all_posts = Post.objects.filter(post_status='post')
     conetext = {
