@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amit Bansal</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav">
+				<li><a href="{% url 'post_list' %}" class="navbar-brand bigbrand">Blog</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav">
+				<li><a href="{% url 'post_tag' post_tag='one' %}">Tag 1</a></li>
+				<li><a href="{% url 'post_tag' post_tag='two' %}">Tag 2</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="http://amitbansal7.com">Amit Bansal</a></li>
+				{% if user.is_authenticated %}
+				<li>
+					<a href="{% url 'post_create' %}">
+						<span class="glyphicon glyphicon-plus"></span>
+						NewPost
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'post_draft' %}">
+						Drafts
+					</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="blog-posts">
+					{% block content %}
+
+					{% endblock content %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
