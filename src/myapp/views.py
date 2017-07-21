@@ -44,7 +44,7 @@ def post_edit_view(request, pk=None):
 
 
 def post_list_view(request):
-    all_posts = Post.objects.filter(post_status='post')
+    all_posts = Post.objects.filter(post_status='post').order_by('-create_date')
     conetext = {
         'posts': all_posts,
     }
@@ -65,16 +65,15 @@ def post_draft_list_view(request):
 
 def post_create_view(request):
     check_user(request)
-    form = PostModelForm(request.POST)
-
+    form = PostModelForm(request.POST or None)
+    context = {
+        'form': form,
+    }
     if form.is_valid():
         obj = form.save(commit=False)
         obj.save()
         return redirect('/post/{pk}'.format(pk=obj.pk))
 
-    context = {
-        'form': form,
-    }
     return render(request, 'post_create.html', context)
 
 

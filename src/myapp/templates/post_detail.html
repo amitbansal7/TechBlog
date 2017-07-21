@@ -3,9 +3,11 @@
 {% block content %}
 	<div class="jumbotron">
 		<h1>{{ post_obj.title }}</h1>
+		<h3>Amit Bansal </h3>
 		<p>Tag: {{ post_obj.tag }}</p>
-		<p>by Amit Bansal  On: {{ post_obj.create_date }}</p>
+		<br>
 		<p>{{ post_obj.content }}</p>
+		<h5>{{ post_obj.create_date }}</h5>
 
 		<div class="container">
 			{% if user.is_authenticated %}
