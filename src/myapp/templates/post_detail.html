@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="jumbotron">
+		<h1>{{ post_obj.title }}</h1>
+		<h3>Amit Bansal </h3>
+		<p>Tag: {{ post_obj.tag }}</p>
+		<br>
+		<p>{{ post_obj.content }}</p>
+		<h5>{{ post_obj.create_date }}</h5>
+
+		<div class="container">
+			{% if user.is_authenticated %}
+				<a href="{% url 'post_delete' pk=post_obj.pk%}" class="btn btn-danger">Delete</a>
+				<a href="{% url 'post_edit' pk=post_obj.pk%} " class="btn btn-primary">Edit</a>
+
+				{% if is_draft %}
+					<a href="{% url 'post_draft' pk=post_obj.pk %} " class="btn btn-info">Post it</a>
+				{% endif %}
+			{% endif %}
+		</div>
+		<hr/>
+		<a href="{% url 'add_comment' pk=post_obj.pk %}" class="btn btn-info">Add Comment</a>
+		<div class="container">
+			<br>
+			{% for comment in post_obj.comments.all %}
+				<hr/><hr/>
+				{% if comment.byadmin %}
+					Admin
+					<span class="glyphicon glyphicon-ok"></span>
+				{% else %}
+					<h5 style="display:inline;">{{ comment.author }}, {{ comment.email }}</h5>
+				{% endif %}
+				{% if user.is_authenticated %}
+				&nbsp;
+				<a href="{% url 'delete_comment' postpk=post_obj.pk compk=comment.pk %}"
+					class='glyphicon glyphicon-remove'></a>
+				{% endif %}
+				<p>{{ comment.content}}</p>
+				<h6>{{ comment.create_date }}</h6>
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock content %}
