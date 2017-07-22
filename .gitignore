@@ -1,11 +1,7 @@
-db.sqlite3
-.DS_Store
-settings.py
-.DS_Store?
-a.out
-c.c
-IC
 *.pyc
-myapp/migrations/*
-.project
-.pydevproject
+*~
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store
