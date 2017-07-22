@@ -44,9 +44,20 @@ def post_edit_view(request, pk=None):
 
 
 def post_list_view(request):
-    all_posts = Post.objects.filter(post_status='post').order_by('-create_date')
+
+    if request.method == 'POST':
+        squery = request.POST['qry']
+        all_posts = Post.objects.filter(
+            Q(post_status='post') &
+            Q(title__icontains=squery)).order_by('-create_date')
+
+    else:
+        all_posts = Post.objects.filter(post_status='post').order_by('-create_date')
+        squery = None
+
     conetext = {
         'posts': all_posts,
+        'squery': squery,
     }
     return render(request, 'post_list.html', conetext)
 

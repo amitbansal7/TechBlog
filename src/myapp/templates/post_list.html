@@ -4,6 +4,10 @@
 	{% if post_status %}
 		<h1>Drafts</h1>
 	{% endif %}
+	{% if squery %}
+		<h1>Search: {{ squery  }} </h1>
+		<br>
+	{% endif %}
 	{% for post in posts %}
 		<div class="row">
 			<div class="col-sm-8">

@@ -4,7 +4,6 @@ from .views import *
 
 urlpatterns = [
     url(r'^$', post_list_view, name='post_list'),
-    url(r'^post/$', post_list_view),
     url(r'^post/draft$', post_draft_list_view, name='post_draft'),
     url(r'^post/tag/(?P<post_tag>\w+)/$', post_list_view_tag, name='post_tag'),
     url(r'^post/create$', post_create_view, name='post_create'),

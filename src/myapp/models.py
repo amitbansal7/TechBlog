@@ -6,8 +6,8 @@ POST_CHOICES = (
 )
 
 TAG_CHOICES = (
-    ('one', 'One'),
-    ('two', 'Two'),
+    ('algorithms', 'Algorithms'),
+    ('django', 'Django'),
 )
 
 
