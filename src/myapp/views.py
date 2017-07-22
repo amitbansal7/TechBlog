@@ -100,10 +100,8 @@ def post_detail_view(request, pk=None):
 
     if str(post.post_status) == "draft":
         post_draft = True
-        print("haan")
     else:
         post_draft = False
-        print("nhi")
 
     context = {
         'post_obj': post,
