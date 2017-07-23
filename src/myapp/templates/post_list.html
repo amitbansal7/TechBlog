@@ -9,9 +9,9 @@
 		<br>
 	{% endif %}
 	{% for post in posts %}
-		<div class="row">
+		<div  class="row">
 			<div class="col-sm-8">
-				<div class="thumbnail">
+				<div style="background-color:#fffeff;" class="thumbnail">
 					<div class="caption">
 						<h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
 						<small>{{ post.create_date }}</small>

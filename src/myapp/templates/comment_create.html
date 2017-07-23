@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="jumbotron">
+<div style="background-color:#fffeff;" class="jumbotron">
 	<form method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
