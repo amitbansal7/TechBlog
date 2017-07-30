@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load staticfiles %}
+
 <html>
 
 <head>
@@ -6,12 +8,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
 
-</head>
-<body style="background-color:#fbf9fb;">
-	<nav style="background-color:#fffeff;"class="navbar navbar-default">
 
+<body id='idbody'>
+	<nav class="navbar navbar-default" id="idnav">
 		<div class="container" id="navfluid">
 			<div class="navbar-header">
        			 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -20,33 +23,37 @@
 		              <span class="icon-bar"></span>
 		              <span class="icon-bar"></span>
 	            </button>
-		          <a style="color:#262626;" href="{% url 'post_list' %}" class="navbar-brand bigbrand">Blog</a>
+		          <a class="navbar-brand bigbrand header-itm" href="{% url 'post_list' %}" >Blog</a>
       		</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a style="color:#262626;" href="{% url 'post_tag' post_tag='algorithms' %}">Algorithms</a></li>
-					<li><a style="color:#262626;" href="{% url 'post_tag' post_tag='django' %}">Django</a></li>
+					<li>
+						<a  href="{% url 'post_tag' post_tag='algorithms' %}">Algorithms</a>
+					</li>
+					<li>
+						<a  href="{% url 'post_tag' post_tag='django' %}">Django</a>
+					</li>
 				</ul>
 				<form class="navbar-form navbar-left" action="{% url 'post_list'%}" method="post">
 					{% csrf_token %}
 			        <div class="form-group">
-			          <input type="text" style="color:#262626;" class="form-control" placeholder="Search" name="qry">
+			          <input type="text" class="form-control header_item" placeholder="Search" name="qry">
 			        </div>
-			        <button type="submit" style="color:#262626;" class="btn btn-default">Submit</button>
+			        <button type="submit" class="btn btn-default header_item">Submit</button>
 	      		</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a style="color:#262626;" href="http://amitbansal7.com">Amit Bansal</a></li>
+					<li><a  href="http://amitbansal7.com">Amit Bansal</a></li>
 					{% if user.is_authenticated %}
 					<li>
-						<a href="{% url 'post_create' %}" style="color:#262626;">
+						<a href="{% url 'post_create' %}" >
 							<span class="glyphicon glyphicon-plus"></span>
 							NewPost
 
 						</a>
 					</li>
 					<li>
-						<a href="{% url 'post_draft' %}" style="color:#262626;">
+						<a href="{% url 'post_draft' %}">
 							Drafts
 						</a>
 					</li>
@@ -64,7 +71,33 @@
 		{% endblock content %}
 
 	</div>
+	<footer>
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="design">
+					<a class="footercontent" href="#">About Us</a>
+					<a class="footercontent" href="#">Discalimer</a>
+					<a class="footercontent" href="mailto:007amitbansal@gmail.com">Contact Us</a>
+					<a class="footercontent" href="#">Privacy policy</a>
+					<a class="footercontent" href="#">Terms & Conditions</a>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="copyright">
+						© 2017, Amit Bansal
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+</footer>
 
 </body>
+
+
 </html>
 

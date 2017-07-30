@@ -8,22 +8,27 @@
 		<h1>Search: {{ squery  }} </h1>
 		<br>
 	{% endif %}
-	{% for post in posts %}
-		<div  class="row">
-			<div class="col-sm-8">
-				<div style="background-color:#fffeff;" class="thumbnail">
-					<div class="caption">
-						<h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
-						<small>{{ post.create_date }}</small>
-						</h3>
-						<p>{{ post.content|linebreaks|truncatechars:220 }}</p>
-						<p><a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-primary"
-						role='butoon'>View</a></p>
+	{% if posts %}
+		{% for post in posts %}
+			<div  class="row">
+				<div class="col-sm-8">
+					<div style="background-color:#fffeff;" class="thumbnail">
+						<div class="caption">
+							<h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+							<small>{{ post.create_date }}</small>
+							</h3>
+							<p>{{ post.content|linebreaks|truncatechars:220 }}</p>
+							<p><a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-primary"
+							role='butoon'>View</a></p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	{% else %}
+		<h1>No Posts</h1>
+	{% endif %}
+
 {% endblock content %}
 
 
