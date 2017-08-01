@@ -27,12 +27,12 @@
 			{% for comment in post_obj.comments.all %}
 				<hr/><hr/>
 				{% if comment.byadmin %}
-					Admin
+					{{ post_obj.user }}
 					<span class="glyphicon glyphicon-ok"></span>
 				{% else %}
 					<h5 style="display:inline;">{{ comment.author }}, {{ comment.email }}</h5>
 				{% endif %}
-				{% if user.is_authenticated %}
+				{% if user.is_authenticated and post_obj.user == user%}
 				&nbsp;
 				<a href="{% url 'delete_comment' postpk=post_obj.pk compk=comment.pk %}"
 					class='glyphicon glyphicon-remove'></a>

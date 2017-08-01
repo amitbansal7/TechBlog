@@ -168,7 +168,7 @@ def add_comment(request, pk):
         obj = form.save(commit=False)
         obj.post = post_obj
 
-        if request.user.is_authenticated():
+        if request.user.is_authenticated() and request.user == post_obj.user:
             obj.byadmin = True
 
         obj.save()
