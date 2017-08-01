@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="jumbotron">
+		{% if user.is_authenticated %}
+			<h2>You are already logged in. <h1>
+			<a href="{% url 'post_list' %}"><h3>Home page</h3></a>
+			<a href="{% url 'user_logout' %}"><h3>Log out</h3></a>
+
+		{% else %}
+			<form method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" name="Submit">
+			</form>
+		{% endif %}
+	</div>
+{% endblock content %}

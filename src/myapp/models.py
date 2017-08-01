@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 POST_CHOICES = (
     ('post', 'Post'),
@@ -12,6 +13,7 @@ TAG_CHOICES = (
 
 
 class Post(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     title = models.CharField(max_length=100)
     tag = models.CharField(max_length=100, choices=TAG_CHOICES)
     content = models.TextField()

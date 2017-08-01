@@ -49,12 +49,16 @@
 						<a href="{% url 'post_create' %}" >
 							<span class="glyphicon glyphicon-plus"></span>
 							NewPost
-
 						</a>
 					</li>
 					<li>
 						<a href="{% url 'post_draft' %}">
 							Drafts
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'user_logout' %}">
+							Logout
 						</a>
 					</li>
 					{% endif %}
@@ -71,6 +75,7 @@
 		{% endblock content %}
 
 	</div>
+	<br><br><br>
 	<footer>
 	<div>
 		<div class="container">

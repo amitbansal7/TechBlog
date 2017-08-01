@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-	{% if post_status %}
-		<h1>Drafts</h1>
-	{% endif %}
-	{% if squery %}
-		<h1>Search: {{ squery  }} </h1>
-		<br>
-	{% endif %}
-	{% if posts %}
+<h1>Welcome to profile of {{ user_obj.username }}</h1>
+<h1>Posts by {{ user_obj.username }}</h1>
+{% if posts %}
 		{% for post in posts %}
 			<div  class="row">
 				<div class="col-sm-8">
@@ -28,9 +23,4 @@
 	{% else %}
 		<h1>No Posts</h1>
 	{% endif %}
-
 {% endblock content %}
-
-
-<h2><a href="{% url 'post_detail' pk=post.pk%}">{{ post.title }}</a></h2>
-		<hr/>

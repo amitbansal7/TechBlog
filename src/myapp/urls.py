@@ -4,6 +4,9 @@ from .views import *
 
 urlpatterns = [
     url(r'^$', post_list_view, name='post_list'),
+    url(r'^login/$', user_login_view, name='user_login'),
+    url(r'^logout/$', user_logout_view, name='user_logout'),
+    url(r'^@(?P<username>\w+)/', profile_view, name='profile_view'),
     url(r'^post/$', post_list_view,),
     url(r'^post/draft$', post_draft_list_view, name='post_draft'),
     url(r'^post/tag/(?P<post_tag>\w+)/$', post_list_view_tag, name='post_tag'),
