@@ -5,7 +5,7 @@
 		<h1>{{ post_obj.title }}</h1>
 		<hr/>
 		<h5>by <a href="{% url 'profile_view' username=post_obj.user %}">@{{ post_obj.user}}</a></h5>
-		<h4>Tag: <a href="{% url 'post_tag' post_tag=post_obj.tag %}">{{ post_obj.tag }}</a></h4>
+		<h4>Topic: <a href="{% url 'post_tag' post_tag=post_obj.tag %}">{{ post_obj.tag }}</a></h4>
 		<br>
 		<p>{{ post_obj.content|linebreaks }}</p>
 		<h5>{{ post_obj.create_date }}</h5>

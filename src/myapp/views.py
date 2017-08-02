@@ -185,6 +185,9 @@ def delete_comment(request, postpk, compk):
     check_user(request)
     comment_obj = get_object_or_404(Comment, pk=compk)
 
+    if not request.user == comment_obj.post.user:
+        raise Http404
+
     context = {
         'comment_obj': comment_obj,
         'postpk': postpk,
