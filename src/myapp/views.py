@@ -103,8 +103,10 @@ def post_list_view(request):
 
 def post_draft_list_view(request):
     check_user(request)
-    post_objs = Post.objects.filter(post_status='draft')
-
+    post_objs = Post.objects.filter(
+        Q(post_status='draft') &
+        Q(user=request.user)
+    )
     context = {
         'posts': post_objs,
         'post_status': 'Draft',
