@@ -55,6 +55,8 @@ def profile_view(request, username):
 def post_delete_view(request, pk=None):
     check_user(request)
     post_obj = get_object_or_404(Post, pk=pk)
+    if not request.user == post_obj.user:
+        raise Http404
     context = {
         'post': post_obj,
     }
@@ -67,7 +69,12 @@ def post_delete_view(request, pk=None):
 
 def post_edit_view(request, pk=None):
     check_user(request)
+
     post_obj = get_object_or_404(Post, pk=pk)
+
+    if not request.user == post_obj.user:
+        raise Http404
+
     form = PostModelForm(request.POST or None, instance=post_obj)
 
     context = {
