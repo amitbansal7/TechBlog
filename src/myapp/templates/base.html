@@ -43,8 +43,13 @@
 			        <button type="submit" class="btn btn-default header_item">Submit</button>
 	      		</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a  href="http://amitbansal7.com">Amit Bansal</a></li>
+
 					{% if user.is_authenticated %}
+					<li>
+						<a  href="{% url 'profile_view' username=user.username %}">
+							Welcome @{{ user.username }}
+						</a>
+					</li>
 					<li>
 						<a href="{% url 'post_create' %}" >
 							<span class="glyphicon glyphicon-plus"></span>
