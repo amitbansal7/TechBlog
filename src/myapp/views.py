@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
+from django import forms
 from .forms import PostModelForm, CommentModelForm
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect
@@ -170,8 +171,18 @@ def post_detail_view(request, pk=None):
 
 
 def add_comment(request, pk):
-    form = CommentModelForm(request.POST or None)
     post_obj = get_object_or_404(Post, pk=pk)
+
+    if request.user.is_authenticated() and request.user == post_obj.user:
+        form = CommentModelForm(
+            request.POST or None,
+            initial={
+                'author': post_obj.user.username,
+                'email': post_obj.user.email,
+            }
+        )
+    else:
+        form = CommentModelForm(request.POST or None)
 
     if form.is_valid():
         obj = form.save(commit=False)
@@ -183,7 +194,6 @@ def add_comment(request, pk):
         obj.save()
 
         return HttpResponseRedirect('/post/{pk}'.format(pk=post_obj.pk))
-
     context = {
         'form': form,
     }
