@@ -142,7 +142,7 @@ def post_list_view_tag(request, post_tag):
     post_objs = Post.objects.filter(
         Q(tag__iexact=post_tag) &
         Q(post_status='post')
-    ).distinct()
+    ).order_by('-create_date')
 
     context = {
         'posts': post_objs,
@@ -167,6 +167,8 @@ def post_detail_view(request, pk=None):
         'post_obj': post,
         'is_draft': post_draft,
     }
+    post.hits += 1
+    post.save()
     return render(request, 'post_detail.html', context)
 
 

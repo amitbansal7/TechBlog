@@ -19,6 +19,7 @@ class Post(models.Model):
     content = models.TextField()
     post_status = models.CharField(max_length=1000, choices=POST_CHOICES)
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='Created on:')
+    hits = models.BigIntegerField(default=0)
 
     def __str__(self):
         return self.title
