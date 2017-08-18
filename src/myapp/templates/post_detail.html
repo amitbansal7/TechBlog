@@ -34,7 +34,7 @@
 				{% else %}
 					<h5 style="display:inline;">{{ comment.author }}, {{ comment.email }}</h5>
 				{% endif %}
-				{% if user.is_authenticated %}
+				{% if user.is_authenticated and post_obj.user == user%}
 				&nbsp;
 				<a href="{% url 'delete_comment' postpk=post_obj.pk compk=comment.pk %}"
 					class='glyphicon glyphicon-remove'></a>
